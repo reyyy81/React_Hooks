@@ -1,0 +1,59 @@
+- import "import React, { useState } from 'react';"
+
+--------------------------------------------------
+Rules of using hooks:
+- Hooks are only for function components
+- Hooks can only be used at the begining of the function component
+- Hooks should be exicuted in same order everytime
+    - place a hook inside if for an example
+    
+    if (this === true) {
+        useState();
+    }
+
+
+    setTimeout(() => {
+      console.log("Delayed for 1 second.");
+    }, 1000)  
+--------------------------------------------------
+FUNCTION AND VARIABLE INITIALIZATION
+- Constructor runs when the component is rendered.
+-  but hooks runs everytime function is called.
+    -- Runs the first time only
+    const [count, setCount] = useState(() => {
+        console.log('run function');
+        return 4;
+    });
+
+    --------------------------------------
+
+    const countInitialization = () => {
+        console.log('count initialization function');
+        return 4;
+    }
+    -- Runs the first time
+    const [count, setCount] = useState(() => countInitialization());
+
+    -- Runs everytime function is called
+    const [count, setCount] = useState(countInitialization());
+
+--------------------------------------------------
+OBJECTS IN STATES
+  const [state, setState] = useState({ count: 4, theme: 'blue'});
+  const decrementCount = () => {
+    setState(prevState => {
+      return {...prevState, count : prevState.count - 1}
+    });
+  }
+
+--------------------------------------------------
+TRY USING MULTIPLE STATE VARIABLES
+
+--------------------------------------------------
+UPDATE STATE VARIABLE - prevState
+
+   const decrementCount = () => {
+    setCount(count - 1);
+    /* using setCount multiple times will not update state variable*
+    // setCount(prevCount => prevCount - 1);
+   }
